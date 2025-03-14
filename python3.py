@@ -1,13 +1,13 @@
 import random
 from math import sqrt
 
-def parz(x):
-    if x < 2:
+def pow_of(num):
+    if num < 1:
         return False
-    for i in range(2, int(sqrt(x)) + 1):
-        if x % i == 0:
-            return False
-    return True
+    while num % 3 == 0:
+        num //= 3
+    return num == 1
+
 n = int(input('n='))
 x = []
 for i in range(n):
@@ -18,12 +18,23 @@ for i in range(n):
 print("Matrix x:")
 for row in x:
     print(row)
-y = []
+found = False
 for i in range(n):
-    prime_count = 0  
     for j in range(n):
-        if parz(x[i][j]):
-            prime_count += 1  
-    y.append(prime_count)  
-print()
-print(y)
+        if pow_of(x[i][j]):
+            row_to_del = i
+            col_to_del = j
+            found = True
+            break
+    if found:
+        break
+
+if found:
+    x.pop(row_to_del)
+    for row in x:
+        row.pop(col_to_del)
+    print("\nMatrix after deleting row", row_to_del, "and column", col_to_del, ":")
+    for row in x:
+        print(row)
+else:
+    print("No element satisfies the condition.")
