@@ -19,10 +19,10 @@ for row in x:
     print(row)
 y = []
 for i in range(n):
-    row_sum = 0  
+    prime_count = 0  
     for j in range(n):
         if parz(x[i][j]):
-           # print(f'Prime found: {x[i][j]} at position ({i}, {j})')
-            row_sum += x[i][j]
-    y.append(row_sum)  
-print("Sum of primes in each row:", y)
+            prime_count += 1  
+    y.append(prime_count)  
+print()
+print(y)
